@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		E6685C8A2E1F652E00E5B911 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E6685C892E1F651F00E5B911 /* README.md */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		E6685C262E1F57F200E5B911 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,6 +31,7 @@
 		E6685C172E1F57F000E5B911 /* BreitlingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BreitlingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6685C252E1F57F200E5B911 /* BreitlingAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BreitlingAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6685C2F2E1F57F200E5B911 /* BreitlingAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BreitlingAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E6685C892E1F651F00E5B911 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -75,6 +80,7 @@
 		E6685C0E2E1F57F000E5B911 = {
 			isa = PBXGroup;
 			children = (
+				E6685C892E1F651F00E5B911 /* README.md */,
 				E6685C192E1F57F000E5B911 /* BreitlingApp */,
 				E6685C282E1F57F200E5B911 /* BreitlingAppTests */,
 				E6685C322E1F57F200E5B911 /* BreitlingAppUITests */,
@@ -212,6 +218,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6685C8A2E1F652E00E5B911 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
