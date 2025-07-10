@@ -358,7 +358,8 @@ extension Wishlist {
             items: [WishlistItem.mockGiftItem],
             collections: [],
             createdDate: Calendar.current.date(byAdding: .month, value: -2, to: Date()) ?? Date(),
-            lastModifiedDate: Calendar.current.date(byAdding: .week, value: -1, to: Date()) ?? Date(),
+            lastModifiedDate: Calendar.current
+                .date(byAdding: .weekOfYear, value: -1, to: Date()) ?? Date(),
             isPrivate: true,
             shareCode: nil,
             category: .giftIdeas,
@@ -431,7 +432,8 @@ extension WishlistItem {
         estimatedPrice: 2190.00,
         currency: "USD",
         availability: .limitedStock,
-        addedDate: Calendar.current.date(byAdding: .week, value: -2, to: Date()) ?? Date(),
+        addedDate: Calendar.current
+            .date(byAdding: .weekOfYear, value: -2, to: Date()) ?? Date(),
         priority: .low,
         notes: "Great diving watch for summer trips",
         desiredCustomizations: nil,
@@ -471,7 +473,8 @@ extension WishlistItem {
         priority: .urgent,
         notes: "Only 1957 pieces made - must have for collection",
         desiredCustomizations: nil,
-        reminderDate: Calendar.current.date(byAdding: .week, value: 1, to: Date()),
+        reminderDate: Calendar.current
+            .date(byAdding: .weekOfYear, value: 1, to: Date()),
         giftRecipient: nil,
         occasionTag: nil
     )
