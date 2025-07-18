@@ -6,6 +6,10 @@
 //
 
 import SwiftUI
+import SFMCSDK
+import Cdp
+import Personalization
+
 
 @main
 struct BreitlingAppApp: App {

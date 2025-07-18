@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E65528AE2E29654800241D14 /* Personalization.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = E65528AC2E29651D00241D14 /* Personalization.xcframework */; };
-		E65528AF2E29654800241D14 /* Personalization.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E65528AC2E29651D00241D14 /* Personalization.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E65528B32E29875B00241D14 /* Cdp.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = E65528B12E29875200241D14 /* Cdp.xcframework */; };
 		E65528B42E29875B00241D14 /* Cdp.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E65528B12E29875200241D14 /* Cdp.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E65528B72E29876C00241D14 /* SFMCSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = E65528B52E29876900241D14 /* SFMCSDK.xcframework */; };
 		E65528B82E29876C00241D14 /* SFMCSDK.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E65528B52E29876900241D14 /* SFMCSDK.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E6685C8A2E1F652E00E5B911 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E6685C892E1F651F00E5B911 /* README.md */; };
+		E68EA82B2E2AD77900FD01C2 /* Personalization 2.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = E68EA8292E2AD77600FD01C2 /* Personalization 2.xcframework */; };
+		E68EA82C2E2AD77900FD01C2 /* Personalization 2.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E68EA8292E2AD77600FD01C2 /* Personalization 2.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,7 +41,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				E65528B82E29876C00241D14 /* SFMCSDK.xcframework in Embed Frameworks */,
-				E65528AF2E29654800241D14 /* Personalization.xcframework in Embed Frameworks */,
+				E68EA82C2E2AD77900FD01C2 /* Personalization 2.xcframework in Embed Frameworks */,
 				E65528B42E29875B00241D14 /* Cdp.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -50,13 +50,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		E65528AC2E29651D00241D14 /* Personalization.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = Personalization.xcframework; sourceTree = "<group>"; };
 		E65528B12E29875200241D14 /* Cdp.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = Cdp.xcframework; sourceTree = "<group>"; };
 		E65528B52E29876900241D14 /* SFMCSDK.xcframework */ = {isa = PBXFileReference; expectedSignature = "AppleDeveloperProgram:RNQ52E7G3P:ExactTarget, Inc"; lastKnownFileType = wrapper.xcframework; path = SFMCSDK.xcframework; sourceTree = "<group>"; };
 		E6685C172E1F57F000E5B911 /* BreitlingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BreitlingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6685C252E1F57F200E5B911 /* BreitlingAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BreitlingAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6685C2F2E1F57F200E5B911 /* BreitlingAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BreitlingAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6685C892E1F651F00E5B911 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		E68EA8292E2AD77600FD01C2 /* Personalization 2.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = "Personalization 2.xcframework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -83,7 +83,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E65528B72E29876C00241D14 /* SFMCSDK.xcframework in Frameworks */,
-				E65528AE2E29654800241D14 /* Personalization.xcframework in Frameworks */,
+				E68EA82B2E2AD77900FD01C2 /* Personalization 2.xcframework in Frameworks */,
 				E65528B32E29875B00241D14 /* Cdp.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -110,12 +110,12 @@
 			children = (
 				E65528B12E29875200241D14 /* Cdp.xcframework */,
 				E65528B52E29876900241D14 /* SFMCSDK.xcframework */,
-				E65528AC2E29651D00241D14 /* Personalization.xcframework */,
 				E6685C892E1F651F00E5B911 /* README.md */,
 				E6685C192E1F57F000E5B911 /* BreitlingApp */,
 				E6685C282E1F57F200E5B911 /* BreitlingAppTests */,
 				E6685C322E1F57F200E5B911 /* BreitlingAppUITests */,
 				E6685C182E1F57F000E5B911 /* Products */,
+				E68EA8292E2AD77600FD01C2 /* Personalization 2.xcframework */,
 			);
 			sourceTree = "<group>";
 		};
