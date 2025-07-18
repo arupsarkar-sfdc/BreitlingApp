@@ -27,10 +27,36 @@ struct MainTabView: View {
     @State private var router = NavigationRouter()
     
     var body: some View {
+        
+
+        
+        
+        
         TabView(selection: $selectedTab) {
+            
+            
+            // Tab 1: Home (Priority 1 - Landing screen)
+            NavigationStack(path: $router.path) {
+                HomeView()
+                    .navigationDestination(for: AppDestination.self) { destination in
+                        NavigationDestinationView(destination: destination)
+                    }
+            }
+            .environment(router)
+            .tabItem {
+                TabItemView(
+                    iconName: "house",
+                    title: "Home",
+                    isSelected: selectedTab == .home
+                )
+            }
+            .tag(TabSelection.home)
+            
+            
             // Tab 1: Collections (Priority 2 from JSON analysis)
             NavigationStack(path: $router.path) {
-                CollectionsView()
+                PersonalizedCollectionsView()
+//                CollectionsView()
                     .navigationDestination(for: AppDestination.self) { destination in
                         NavigationDestinationView(destination: destination)
                     }
@@ -129,6 +155,7 @@ struct MainTabView: View {
 // MARK: - Tab Selection Enum
 
 enum TabSelection: CaseIterable {
+    case home
     case collections
     case search
     case boutiques
@@ -136,6 +163,8 @@ enum TabSelection: CaseIterable {
     
     var title: String {
         switch self {
+        case .home:
+            return "Home"
         case .collections:
             return "Collections"
         case .search:
@@ -149,6 +178,8 @@ enum TabSelection: CaseIterable {
     
     var iconName: String {
         switch self {
+        case .home:
+            return "house"
         case .collections:
             return "square.grid.2x2"
         case .search:
@@ -183,6 +214,15 @@ struct TabItemView: View {
     }
 }
 
+struct NavigationCollectionFilterView: View {
+    let collectionId: String
+    
+    var body: some View {
+        Text("Filter Collection: \(collectionId)")
+            .font(BreitlingFonts.title2)
+    }
+}
+
 // MARK: - Navigation Destination View
 
 struct NavigationDestinationView: View {
@@ -193,87 +233,87 @@ struct NavigationDestinationView: View {
             switch destination {
             // Core product navigation
             case .productDetail(let productId):
-                ProductDetailView(productId: productId)
+                AnyView(ProductDetailView(productId: productId))
                 
             case .collectionDetail(let collectionId):
-                CollectionDetailView(collectionId: collectionId)
+                AnyView(CollectionDetailView(collectionId: collectionId))
                 
             // Store & location navigation
             case .boutiqueDetail(let storeId):
-                BoutiqueDetailView(storeId: storeId)
+                AnyView(BoutiqueDetailView(storeId: storeId))
                 
             case .appointmentBooking(let storeId):
-                AppointmentBookingView(storeId: storeId)
+                AnyView(AppointmentBookingView(storeId: storeId))
                 
             // Advanced features navigation
             case .watchConfigurator(let productId):
-                WatchConfiguratorView(productId: productId)
+                AnyView(WatchConfiguratorView(productId: productId))
                 
             case .arTryOn(let productId):
-                ARTryOnView(productId: productId)
+                AnyView(ARTryOnView(productId: productId))
                 
             // User account navigation
             case .orderHistory:
-                OrderHistoryView()
+                AnyView(Text("Order History - Coming Soon").font(BreitlingFonts.title2))
                 
             case .orderDetail(let orderId):
-                OrderDetailView(orderId: orderId)
+                AnyView(OrderDetailView(orderId: orderId))
                 
             case .wishlistDetail(let wishlistId):
-                WishlistDetailView(wishlistId: wishlistId)
+                AnyView(WishlistDetailView(wishlistId: wishlistId))
                 
             case .settings:
-                SettingsView()
+                AnyView(SettingsView())
                 
             case .editProfile:
-                EditProfileView()
+                AnyView(Text("Edit Profile - Coming Soon").font(BreitlingFonts.title2))
                 
-            // Search and filtering
-            case .searchResults(let query, let filters):
-                SearchResultsView(query: query, filters: filters)
                 
             case .collectionFilter(let collectionId):
-                CollectionFilterView(collectionId: collectionId)
+                AnyView(NavigationCollectionFilterView(collectionId: collectionId))
                 
             // Heritage and content
             case .heritageStory(let storyId):
-                HeritageStoryView(storyId: storyId)
+                AnyView(HeritageStoryView(storyId: storyId))
                 
             case .brandContent(let contentId):
-                BrandContentView(contentId: contentId)
+                AnyView(BrandContentView(contentId: contentId))
                 
             // Support and services
             case .customerSupport:
-                CustomerSupportView()
+                AnyView(CustomerSupportView())
                 
             case .warrantyRegistration(let productId):
-                WarrantyRegistrationView(productId: productId)
+                AnyView(WarrantyRegistrationView(productId: productId))
                 
             case .serviceRequest(let productId):
-                ServiceRequestView(productId: productId)
+                AnyView(ServiceRequestView(productId: productId))
                 
             // Premium features
             case .exclusiveContent:
-                ExclusiveContentView()
+                AnyView(ExclusiveContentView())
                 
             case .limitedEditions:
-                LimitedEditionsView()
+                AnyView(LimitedEditionsView())
                 
             case .membershipBenefits:
-                MembershipBenefitsView()
+                AnyView(MembershipBenefitsView())
                 
             // Onboarding
             case .welcomeOnboarding:
-                WelcomeOnboardingView()
+                AnyView(WelcomeOnboardingView())
                 
             case .stylePreferences:
-                StylePreferencesView()
+                AnyView(StylePreferencesView())
                 
             case .locationPermissions:
-                LocationPermissionsView()
+                AnyView(LocationPermissionsView())
                 
             case .notificationPermissions:
-                NotificationPermissionsView()
+                AnyView(NotificationPermissionsView())
+                
+                default:
+                    AnyView(Text("Placeholder"))
             }
         }
         .navigationTitle(destination.title)
@@ -283,49 +323,15 @@ struct NavigationDestinationView: View {
 
 // MARK: - Placeholder Views (To be implemented in Phase 3)
 
-// These are placeholder views that will be created in Phase 3
-// They provide the structure for navigation to work correctly
 
-struct CollectionsView: View {
-    var body: some View {
-        Text("Collections View - Coming Soon")
-            .font(BreitlingFonts.title2)
-            .foregroundColor(BreitlingColors.text)
-    }
-}
+//struct ProfileView: View {
+//    var body: some View {
+//        Text("Profile View - Coming Soon")
+//            .font(BreitlingFonts.title2)
+//            .foregroundColor(BreitlingColors.text)
+//    }
+//}
 
-struct SearchView: View {
-    var body: some View {
-        Text("Search View - Coming Soon")
-            .font(BreitlingFonts.title2)
-            .foregroundColor(BreitlingColors.text)
-    }
-}
-
-struct BoutiqueLocatorView: View {
-    var body: some View {
-        Text("Boutique Locator - Coming Soon")
-            .font(BreitlingFonts.title2)
-            .foregroundColor(BreitlingColors.text)
-    }
-}
-
-struct ProfileView: View {
-    var body: some View {
-        Text("Profile View - Coming Soon")
-            .font(BreitlingFonts.title2)
-            .foregroundColor(BreitlingColors.text)
-    }
-}
-
-// Additional placeholder views for navigation destinations
-struct ProductDetailView: View {
-    let productId: String
-    var body: some View {
-        Text("Product Detail: \(productId)")
-            .font(BreitlingFonts.title2)
-    }
-}
 
 struct CollectionDetailView: View {
     let collectionId: String
@@ -367,12 +373,12 @@ struct ARTryOnView: View {
     }
 }
 
-struct OrderHistoryView: View {
-    var body: some View {
-        Text("Order History")
-            .font(BreitlingFonts.title2)
-    }
-}
+//struct OrderHistoryView: View {
+//    var body: some View {
+//        Text("Order History")
+//            .font(BreitlingFonts.title2)
+//    }
+//}
 
 struct OrderDetailView: View {
     let orderId: String
@@ -397,29 +403,12 @@ struct SettingsView: View {
     }
 }
 
-struct EditProfileView: View {
-    var body: some View {
-        Text("Edit Profile")
-            .font(BreitlingFonts.title2)
-    }
-}
-
-struct SearchResultsView: View {
-    let query: String
-    let filters: SearchFilters?
-    var body: some View {
-        Text("Search: \(query)")
-            .font(BreitlingFonts.title2)
-    }
-}
-
-struct CollectionFilterView: View {
-    let collectionId: String
-    var body: some View {
-        Text("Filter Collection: \(collectionId)")
-            .font(BreitlingFonts.title2)
-    }
-}
+//struct EditProfileView: View {
+//    var body: some View {
+//        Text("Edit Profile")
+//            .font(BreitlingFonts.title2)
+//    }
+//}
 
 struct HeritageStoryView: View {
     let storyId: String

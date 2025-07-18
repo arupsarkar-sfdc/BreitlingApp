@@ -42,6 +42,11 @@ struct BreitlingColors {
     static let warning = Color.orange
     static let error = Color.red
     static let info = navyBlue
+    
+    // MISSING PROPERTIES THAT WERE USED IN CODE:
+    static let primaryText = text  // Map to existing text
+    static let secondaryText = textSecondary  // Map to existing textSecondary
+    static let border = divider  // Map to existing divider
 }
 
 extension Color {

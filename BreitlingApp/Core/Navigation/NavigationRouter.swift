@@ -161,6 +161,14 @@ class NavigationRouter {
             // Unknown deep link, navigate to root
             navigateToRoot()
         }
+        
+        func showBoutique(_ id: String) {
+            navigate(to: .boutiqueDetail(storeId: id))
+        }
+
+        func bookAppointment(at id: String) {
+            navigate(to: .appointmentBooking(storeId: id))
+        }
     }
     
     // MARK: - Navigation State
@@ -184,10 +192,10 @@ class NavigationRouter {
 // MARK: - App Destinations
 
 struct SearchFilters: Hashable {
-    let collections: [String]
-    let priceRange: ClosedRange<Double>?
-    let materials: [String]
-    let availability: [ProductAvailability]
+    var collections: [String]
+    var priceRange: ClosedRange<Double>?
+    var materials: [String]
+    var availability: [ProductAvailability]
     
     init(collections: [String] = [], priceRange: ClosedRange<Double>? = nil, materials: [String] = [], availability: [ProductAvailability] = []) {
         self.collections = collections
@@ -196,6 +204,8 @@ struct SearchFilters: Hashable {
         self.availability = availability
     }
 }
+
+typealias ProductFilters = SearchFilters
 
 enum AppDestination: Hashable {
     // Core product navigation
@@ -324,4 +334,6 @@ extension AppDestination {
             return false
         }
     }
+    
+    
 }

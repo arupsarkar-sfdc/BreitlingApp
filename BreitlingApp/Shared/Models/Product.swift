@@ -106,10 +106,10 @@ extension Product {
         price: 8950.00,
         currency: "USD",
         imageURLs: [
-            "navitimer-b01-front",
-            "navitimer-b01-side",
-            "navitimer-b01-back",
-            "navitimer-b01-detail"
+            "navitimer_1",
+            "navitimer_2",
+            "navitimer_3",
+            "Classic_avi_1"
         ],
         description: "The Navitimer B01 Chronograph 43 features the manufacture Breitling Caliber 01, a COSC-certified chronometer with approximately 70 hours of power reserve.",
         specifications: ProductSpecifications(
@@ -135,7 +135,7 @@ extension Product {
             collection: "Chronomat",
             price: 7450.00,
             currency: "USD",
-            imageURLs: ["chronomat-b01-front", "chronomat-b01-side"],
+            imageURLs: ["endurance_1", "endurance_2"],
             description: "The Chronomat B01 42 combines performance and style with its iconic rouleaux bracelet and distinctive bezel.",
             specifications: ProductSpecifications(
                 movement: "Breitling Manufacture Caliber 01",
@@ -157,7 +157,7 @@ extension Product {
             collection: "Superocean Heritage",
             price: 4390.00,
             currency: "USD",
-            imageURLs: ["superocean-heritage-front"],
+            imageURLs: ["SOH-1-temp_1"],
             description: "A tribute to the original 1957 Superocean, this limited edition captures the spirit of vintage diving watches.",
             specifications: ProductSpecifications(
                 movement: "Breitling Caliber 13",

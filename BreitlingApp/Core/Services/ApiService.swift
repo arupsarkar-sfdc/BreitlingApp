@@ -432,20 +432,6 @@ private extension APIService {
 
 // MARK: - Supporting Types
 
-struct ProductFilters {
-    let collections: [String]
-    let priceRange: ClosedRange<Double>?
-    let materials: [String]
-    let availability: [ProductAvailability]
-    
-    init(collections: [String] = [], priceRange: ClosedRange<Double>? = nil, materials: [String] = [], availability: [ProductAvailability] = []) {
-        self.collections = collections
-        self.priceRange = priceRange
-        self.materials = materials
-        self.availability = availability
-    }
-}
-
 struct InventoryStatus: Codable {
     let productId: String
     let available: Bool

@@ -325,50 +325,112 @@ struct LuxuryProductImageView: View {
     let aspectRatio: CGFloat
     let cornerRadius: CGFloat
     
-    init(
-        imageURL: String,
-        aspectRatio: CGFloat = 1.0,
-        cornerRadius: CGFloat = 12
-    ) {
+    init(imageURL: String, aspectRatio: CGFloat = 1.0, cornerRadius: CGFloat = 8.0) {
         self.imageURL = imageURL
         self.aspectRatio = aspectRatio
         self.cornerRadius = cornerRadius
     }
     
     var body: some View {
-        if let url = URL(string: imageURL) {
-            AsyncImageView(url: url) {
-                RoundedRectangle(cornerRadius: cornerRadius)
-                    .fill(BreitlingColors.cardBackground)
-                    .overlay {
-                        ProgressView()
-                            .progressViewStyle(CircularProgressViewStyle(tint: BreitlingColors.accent))
-                    }
-                    .aspectRatio(aspectRatio, contentMode: .fit)
-            } content: { image in
-                Image(uiImage: image)
+        Group {
+            if let uiImage = loadImageFromAssets() {
+                Image(uiImage: uiImage)
                     .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .clipped()
+                    .aspectRatio(aspectRatio, contentMode: .fill)
+                    .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
+            } else {
+                // Elegant placeholder for missing images
+                WatchImagePlaceholder(
+                    collectionName: extractCollectionName(),
+                    aspectRatio: aspectRatio,
+                    cornerRadius: cornerRadius
+                )
             }
-            .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
-            .overlay {
-                RoundedRectangle(cornerRadius: cornerRadius)
-                    .stroke(BreitlingColors.divider, lineWidth: 0.5)
-            }
-        } else {
-            RoundedRectangle(cornerRadius: cornerRadius)
-                .fill(BreitlingColors.cardBackground)
-                .overlay {
-                    Image(systemName: "photo")
-                        .foregroundColor(BreitlingColors.mediumGray)
-                        .font(.system(size: 24))
-                }
-                .aspectRatio(aspectRatio, contentMode: .fit)
         }
+    }
+    
+    private func loadImageFromAssets() -> UIImage? {
+        // Try multiple path strategies
+        let paths = [
+            imageURL,                                          // Direct name
+            "product_images/\(imageURL)",                     // With product_images folder
+            "product_images/navitimer/\(imageURL)",           // Navitimer folder
+            "product_images/superocean/\(imageURL)",          // Superocean folder
+            "product_images/chronomat/\(imageURL)",           // Chronomat folder
+            "product_images/premier/\(imageURL)",             // Premier folder
+            "product_images/avenger/\(imageURL)",             // Avenger folder
+            "images/\(imageURL)",                             // Alternative images folder
+            "\(imageURL).jpg",                                // With extension
+            "\(imageURL).png"                                 // With PNG extension
+        ]
+        
+        for path in paths {
+            if let image = UIImage(named: path) {
+                print("✅ Found image at: \(path)")
+                return image
+            }
+        }
+        
+        print("❌ Image not found: \(imageURL)")
+        return nil
+    }
+    
+    private func extractCollectionName() -> String {
+        // Extract collection name from image URL for better placeholder
+        if imageURL.contains("navitimer") { return "Navitimer" }
+        if imageURL.contains("superocean") { return "Superocean" }
+        if imageURL.contains("chronomat") { return "Chronomat" }
+        if imageURL.contains("premier") { return "Premier" }
+        if imageURL.contains("avenger") { return "Avenger" }
+        return "Breitling"
     }
 }
 
+struct WatchImagePlaceholder: View {
+    let collectionName: String
+    let aspectRatio: CGFloat
+    let cornerRadius: CGFloat
+    
+    var body: some View {
+        RoundedRectangle(cornerRadius: cornerRadius)
+            .fill(
+                LinearGradient(
+                    colors: [
+                        BreitlingColors.navyBlue.opacity(0.8),
+                        BreitlingColors.navyBlue.opacity(0.6)
+                    ],
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                )
+            )
+            .aspectRatio(aspectRatio, contentMode: .fit)
+            .overlay {
+                VStack(spacing: 12) {
+                    // Watch icon
+                    Image(systemName: "applewatch")
+                        .font(.system(size: 32, weight: .light))
+                        .foregroundColor(.white.opacity(0.8))
+                    
+                    // Collection name
+                    Text(collectionName)
+                        .font(BreitlingFonts.callout)
+                        .fontWeight(.medium)
+                        .foregroundColor(.white)
+                    
+                    // Subtle "Coming Soon" text
+                    Text("Image Loading...")
+                        .font(BreitlingFonts.caption)
+                        .foregroundColor(.white.opacity(0.7))
+                }
+                .padding()
+            }
+            .overlay {
+                // Subtle border
+                RoundedRectangle(cornerRadius: cornerRadius)
+                    .stroke(BreitlingColors.luxuryGold.opacity(0.3), lineWidth: 1)
+            }
+    }
+}
 // MARK: - Hero Image View (for collections and banners)
 
 struct HeroImageView: View {
